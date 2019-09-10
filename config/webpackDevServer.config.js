@@ -7,8 +7,12 @@ const ignoredFiles = require('react-dev-utils/ignoredFiles');
 const paths = require('./paths');
 const fs = require('fs');
 
+const { getRewritesOfHistoryApiFallback } = require('./multipage.config');
+
 const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
 const host = process.env.HOST || '0.0.0.0';
+
+const rewrites = getRewritesOfHistoryApiFallback();
 
 module.exports = function(proxy, allowedHost) {
   return {
@@ -79,6 +83,7 @@ module.exports = function(proxy, allowedHost) {
       // Paths with dots should still use the history fallback.
       // See https://github.com/facebook/create-react-app/issues/387.
       disableDotRule: true,
+      rewrites,
     },
     public: allowedHost,
     proxy,

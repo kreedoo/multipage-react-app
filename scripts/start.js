@@ -32,12 +32,23 @@ const paths = require('../config/paths');
 const configFactory = require('../config/webpack.config');
 const createDevServerConfig = require('../config/webpackDevServer.config');
 
+const { isMultipageMode, pages } = require('../config/multipage.config');
+
 const useYarn = fs.existsSync(paths.yarnLockFile);
 const isInteractive = process.stdout.isTTY;
 
 // Warn and crash if required files are missing
-if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
-  process.exit(1);
+if(isMultipageMode){
+  Object.keys(pages).forEach(name => {
+    let { path } = pages[name];
+    if (!checkRequiredFiles([paths.appHtml, path])) {
+      process.exit(1);
+    }
+  });
+}else{
+  if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
+    process.exit(1);
+  }
 }
 
 // Tools like Cloud9 rely on this.

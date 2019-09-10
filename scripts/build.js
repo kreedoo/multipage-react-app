@@ -27,6 +27,8 @@ const printHostingInstructions = require('react-dev-utils/printHostingInstructio
 const FileSizeReporter = require('react-dev-utils/FileSizeReporter');
 const printBuildError = require('react-dev-utils/printBuildError');
 
+const { isMultipageMode, pages } = require('../config/multipage.config');
+
 const measureFileSizesBeforeBuild =
   FileSizeReporter.measureFileSizesBeforeBuild;
 const printFileSizesAfterBuild = FileSizeReporter.printFileSizesAfterBuild;
@@ -39,8 +41,17 @@ const WARN_AFTER_CHUNK_GZIP_SIZE = 1024 * 1024;
 const isInteractive = process.stdout.isTTY;
 
 // Warn and crash if required files are missing
-if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
-  process.exit(1);
+if(isMultipageMode){
+  Object.keys(pages).forEach(name => {
+    let { path } = pages[name];
+    if (!checkRequiredFiles([paths.appHtml, path])) {
+      process.exit(1);
+    }
+  });
+}else{
+  if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
+    process.exit(1);
+  }
 }
 
 // Generate configuration
