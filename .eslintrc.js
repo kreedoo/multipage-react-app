@@ -14,6 +14,12 @@ module.exports = {
         "import/no-extraneous-dependencies": ["error", {
             "devDependencies": ["**/tests/**.js", "/mock/**/**.js", "**/**.test.js"]
         }],
+        "react/prop-types": ["off"],
+        "react/forbid-prop-types": ["off"],
+        "react/jsx-props-no-spreading": ["error", {
+            "html": "ignore",
+            "custom": "ignore"
+        }],
         "react/jsx-filename-extension": ["error", {
             "extensions": [".js", ".jsx"]
         }],
