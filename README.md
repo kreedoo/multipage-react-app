@@ -29,13 +29,13 @@ yarn ^1.17.3
 
 ## 目录结构与说明
 
-├── README.md
-├── .eslintignore
-├── .eslintrc.js
-├── node_modules
-├── package.json
-├── .gitignore
-├── config
+├── README.md<br />
+├── .eslintignore<br />
+├── .eslintrc.js<br />
+├── node_modules<br />
+├── package.json<br />
+├── .gitignore<br />
+├── config<br />
 │   ├── jest
 │   ├── env.js
 │   ├── modules.js
