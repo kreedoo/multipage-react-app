@@ -36,31 +36,35 @@ yarn ^1.17.3
 ├── package.json<br />
 ├── .gitignore<br />
 ├── config<br />
-│   ├── jest
-│   ├── env.js
-│   ├── modules.js
-│   ├── multipage.config.js
-│   ├── paths.js
-│   ├── pnpTs.js
-│   ├── webpack.config.js
-│   └── webpackDevServer.config.js
-├── scripts
-│   ├── build.js
-│   ├── start.js
-│   └── test.js
-├── public
-│   ├── favicon.ico
-│   ├── index.html 页面模板
-│   └── manifest.json
-└── src 源码目录
-    ├── index 首页
-    |   ├── index.js 多页面开发模式下的页面入口文件
-    |   └── index.html 页面模板，如果不存在这个文件时，默认是public/index.html
-    ├── index.js 单页面开发模式下的入口文件
-    └── serviceWorker.js
+│   ├── jest<br />
+│   ├── env.js<br />
+│   ├── modules.js<br />
+│   ├── multipage.config.js<br />
+│   ├── paths.js<br />
+│   ├── pnpTs.js<br />
+│   ├── webpack.config.js<br />
+│   └── webpackDevServer.config.js<br />
+├── scripts<br />
+│   ├── build.js<br />
+│   ├── start.js<br />
+│   └── test.js<br />
+├── public<br />
+│   ├── favicon.ico<br />
+│   ├── index.html 页面模板<br />
+│   └── manifest.json<br />
+└── src 源码目录<br />
+    ├── index 首页<br />
+    |   ├── index.js 多页面开发模式下的页面入口文件<br />
+    |   └── index.html 页面模板，如果不存在这个文件时，默认是public/index.html<br />
+    ├── index.js 单页面开发模式下的入口文件<br />
+    └── serviceWorker.js<br />
 
 ## 安装与使用
+
 step 1. `git clone https://github.com/kreedoo/multipage-react-app.git`
+
 step 2. `npm install` 或 `yarn install`
+
 step 3. `npm start` 或 `yarn start`
+
 step 4. 在浏览器里打开URL：[http://localhost:3000](http://localhost:3000)
