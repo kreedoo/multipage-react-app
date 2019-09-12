@@ -1,13 +1,19 @@
 # multipage-react-app
 
 基于[create-react-app](https://create-react-app.dev/)，支持`多页面开发模式`和`单页面开发模式`。
+
 默认支持`多页面开发模式`。
+
 该框架引入了react-router-dom、react-redux、antd-mobile等react相关技术。
+
 它可用于开发任何web页面（Mobile Web 或者 PC Web，甚至自适应类的Web）。
 
 ## node/npm版本
+
 node ^v10.16.0
+
 npm ^6.9.0
+
 yarn ^1.17.3
 
 ## 依赖技术栈
