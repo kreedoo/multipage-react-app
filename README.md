@@ -1,68 +1,60 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# multipage-react-app
 
-## Available Scripts
+基于[create-react-app](https://create-react-app.dev/)，支持`多页面开发模式`和`单页面开发模式`。
+默认支持`多页面开发模式`。
+该框架引入了react-router-dom、react-redux、antd-mobile等react相关技术。
+它可用于开发任何web页面（Mobile Web 或者 PC Web，甚至自适应类的Web）。
 
-In the project directory, you can run:
+## node/npm版本
+node ^v10.16.0
+npm ^6.9.0
+yarn ^1.17.3
 
-### `npm start`
+## 依赖技术栈
+1. [react](https://reactjs.org/)
+2. [react-dom](https://reactjs.org/)
+3. [react-router-dom](https://reacttraining.com/react-router/)
+4. [redux](https://redux.js.org/)
+5. [react-redux](https://redux.js.org/basics/usage-with-react)
+7. [antd-mobile](https://mobile.ant.design/docs/react/introduce-cn)
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 编码规范与约定
+1. 采用[airbnb](https://github.com/airbnb/javascript)开源JS编码规范
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## 目录结构与说明
 
-### `npm test`
+├── README.md
+├── .eslintignore
+├── .eslintrc.js
+├── node_modules
+├── package.json
+├── .gitignore
+├── config
+│   ├── jest
+│   ├── env.js
+│   ├── modules.js
+│   ├── multipage.config.js
+│   ├── paths.js
+│   ├── pnpTs.js
+│   ├── webpack.config.js
+│   └── webpackDevServer.config.js
+├── scripts
+│   ├── build.js
+│   ├── start.js
+│   └── test.js
+├── public
+│   ├── favicon.ico
+│   ├── index.html 页面模板
+│   └── manifest.json
+└── src 源码目录
+    ├── index 首页
+    |   ├── index.js 多页面开发模式下的页面入口文件
+    |   └── index.html 页面模板，如果不存在这个文件时，默认是public/index.html
+    ├── index.js 单页面开发模式下的入口文件
+    └── serviceWorker.js
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+## 安装与使用
+step 1. `git clone https://github.com/kreedoo/multipage-react-app.git`
+step 2. `npm install` 或 `yarn install`
+step 3. `npm start` 或 `yarn start`
+step 4. 在浏览器里打开URL：[http://localhost:3000](http://localhost:3000)
