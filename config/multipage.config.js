@@ -2,6 +2,8 @@ const path = require('path');
 const fs = require('fs');
 const globby = require('globby');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const getParams = require('./params');
+const params = getParams();
 
 const IS_MULTIPAGE_MODE = true;
 
@@ -9,21 +11,45 @@ const appDirectory = fs.realpathSync(process.cwd());
 const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 
 const jsGlobPath = `${resolveApp('src')}/*/index.js`;
+const htmlGlobPath = `${resolveApp('src')}/*/index.html`;
 
-function getPages(){
+function getAllPages(){
   const pages = {};
-  globby.sync([jsGlobPath]).forEach(filePath => {
-    let pathParts = filePath.split('/');
-    let name = pathParts[pathParts.length - 2];
-    pages[name] = {
+  globby.sync([jsGlobPath, htmlGlobPath]).forEach(filePath => {
+    const pathParts = filePath.split('/');
+    const name = pathParts[pathParts.length - 2];
+    const isHTMLTemplate = /\.html$/.test(filePath);
+    pages[name] = Object.assign({}, pages[name], isHTMLTemplate ? {
+      template: filePath
+    } : {
       name,
       path: filePath
-    };
+    });
   });
 
   return pages;
 }
-const pages = getPages();
+function getValidPages(pages, params){
+  if(typeof params.page !== 'undefined'){
+    let validPages = {};
+    let pageNames = params.page.split(/[:,\|]/);
+    let validPageNames = Object.keys(pages).filter(name => pageNames.indexOf(name) > -1);
+    if(validPageNames.length > 0){
+      validPageNames.forEach(name => {
+        validPages[name] = pages[name];
+      });
+
+      return validPages;
+    }else{
+      throw new Error(`[${pageNames.join(', ')}] pages are not exist!`);
+    }
+  }
+
+  return pages;
+}
+
+const allPages = getAllPages();
+const pages = getValidPages(allPages, params);
 
 function getEntries(isEnvDevelopment, appIndexJsForSPAMode){
   if(IS_MULTIPAGE_MODE){
@@ -70,7 +96,7 @@ function getHTMLPlugins(isEnvProduction, defaultAppHtml){
         {},
         {
           inject: true,
-          template: defaultAppHtml,
+          template: template || defaultAppHtml,
           chunks: [name, 0],
           filename: `${name}.html`,
           title: `${name} page`,
@@ -103,6 +129,7 @@ function getRewritesOfHistoryApiFallback(){
 
 module.exports = {
   isMultipageMode: IS_MULTIPAGE_MODE,
+  params,
   pages,
   getEntries,
   getHTMLPlugins,
