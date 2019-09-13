@@ -27,7 +27,13 @@ const printHostingInstructions = require('react-dev-utils/printHostingInstructio
 const FileSizeReporter = require('react-dev-utils/FileSizeReporter');
 const printBuildError = require('react-dev-utils/printBuildError');
 
-const { isMultipageMode, pages } = require('../config/multipage.config');
+const { isIndependentPacking, isMultipageMode, pages, groupName } = require('../config/multipage.config');
+
+let outputRoot = '';
+if(isIndependentPacking && isMultipageMode){
+  outputRoot = groupName;
+}
+const buildTargetFolder = path.resolve(paths.appBuild, outputRoot);
 
 const measureFileSizesBeforeBuild =
   FileSizeReporter.measureFileSizesBeforeBuild;
@@ -43,8 +49,8 @@ const isInteractive = process.stdout.isTTY;
 // Warn and crash if required files are missing
 if(isMultipageMode){
   Object.keys(pages).forEach(name => {
-    let { path } = pages[name];
-    if (!checkRequiredFiles([paths.appHtml, path])) {
+    let { template, path } = pages[name];
+    if (!checkRequiredFiles([template || paths.appHtml, path])) {
       process.exit(1);
     }
   });
@@ -64,12 +70,12 @@ checkBrowsers(paths.appPath, isInteractive)
   .then(() => {
     // First, read the current file sizes in build directory.
     // This lets us display how much they changed later.
-    return measureFileSizesBeforeBuild(paths.appBuild);
+    return measureFileSizesBeforeBuild(buildTargetFolder);
   })
   .then(previousFileSizes => {
     // Remove all content but keep the directory so that
     // if you're in it, you don't end up in Trash
-    fs.emptyDirSync(paths.appBuild);
+    fs.emptyDirSync(buildTargetFolder);
     // Merge with the public folder
     copyPublicFolder();
     // Start the webpack build
@@ -98,7 +104,7 @@ checkBrowsers(paths.appPath, isInteractive)
       printFileSizesAfterBuild(
         stats,
         previousFileSizes,
-        paths.appBuild,
+        buildTargetFolder,
         WARN_AFTER_BUNDLE_GZIP_SIZE,
         WARN_AFTER_CHUNK_GZIP_SIZE
       );
@@ -107,7 +113,7 @@ checkBrowsers(paths.appPath, isInteractive)
       const appPackage = require(paths.appPackageJson);
       const publicUrl = paths.publicUrl;
       const publicPath = config.output.publicPath;
-      const buildFolder = path.relative(process.cwd(), paths.appBuild);
+      const buildFolder = path.relative(process.cwd(), buildTargetFolder);
       printHostingInstructions(
         appPackage,
         publicUrl,
@@ -195,7 +201,7 @@ function build(previousFileSizes) {
 }
 
 function copyPublicFolder() {
-  fs.copySync(paths.appPublic, paths.appBuild, {
+  fs.copySync(paths.appPublic, buildTargetFolder, {
     dereference: true,
     filter: file => file !== paths.appHtml,
   });

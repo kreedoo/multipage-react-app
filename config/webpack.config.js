@@ -31,7 +31,7 @@ const postcssNormalize = require('postcss-normalize');
 
 const appPackageJson = require(paths.appPackageJson);
 
-const { getEntries, getHTMLPlugins } = require('./multipage.config');
+const { isIndependentPacking, isMultipageMode, groupName, getEntries, getHTMLPlugins } = require('./multipage.config');
 
 // Source maps are resource heavy and can cause out of memory issue for large source files.
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
@@ -53,6 +53,11 @@ const sassRegex = /\.(scss|sass)$/;
 const sassModuleRegex = /\.module\.(scss|sass)$/;
 const lessRegex = /\.less$/;
 const lessModuleRegex = /\.module\.less$/;
+
+let outputRoot = '';
+if(isIndependentPacking && isMultipageMode){
+  outputRoot = groupName;
+}
 
 // This is the production and development configuration.
 // It is focused on developer experience, fast rebuilds, and a minimal bundle.
@@ -153,7 +158,7 @@ module.exports = function(webpackEnv) {
     entry: entries,
     output: {
       // The build folder.
-      path: isEnvProduction ? paths.appBuild : undefined,
+      path: isEnvProduction ? path.resolve(paths.appBuild, outputRoot) : undefined,
       // Add /* filename */ comments to generated require()s in the output.
       pathinfo: isEnvDevelopment,
       // There will be one main bundle, and one file per asynchronous chunk.

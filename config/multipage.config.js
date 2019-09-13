@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const getParams = require('./params');
 const params = getParams();
 
+const IS_INDEPENDENT_PACKING = true;
 const IS_MULTIPAGE_MODE = true;
 
 const appDirectory = fs.realpathSync(process.cwd());
@@ -32,11 +33,15 @@ function getAllPages(){
 function getValidPages(pages, params){
   if(typeof params.page !== 'undefined'){
     let validPages = {};
-    let pageNames = params.page.split(/[:,\|]/);
-    let validPageNames = Object.keys(pages).filter(name => pageNames.indexOf(name) > -1);
+    const pageNames = params.page.split(/[:,\|]/);
+    const validPageNames = Object.keys(pages).filter(name => pageNames.indexOf(name) > -1);
     if(validPageNames.length > 0){
+      const groupName = validPageNames.join('_');
       validPageNames.forEach(name => {
-        validPages[name] = pages[name];
+        validPages[name] = {
+          ...pages[name],
+          groupName
+        };
       });
 
       return validPages;
@@ -50,6 +55,11 @@ function getValidPages(pages, params){
 
 const allPages = getAllPages();
 const pages = getValidPages(allPages, params);
+const groupName = IS_INDEPENDENT_PACKING ? (() => {
+  const name = Object.keys(pages)[0];
+  const page = pages[name];
+  return page.groupName || '';
+})() : '';
 
 function getEntries(isEnvDevelopment, appIndexJsForSPAMode){
   if(IS_MULTIPAGE_MODE){
@@ -129,8 +139,10 @@ function getRewritesOfHistoryApiFallback(){
 
 module.exports = {
   isMultipageMode: IS_MULTIPAGE_MODE,
+  isIndependentPacking: IS_INDEPENDENT_PACKING,
   params,
   pages,
+  groupName,
   getEntries,
   getHTMLPlugins,
   getRewritesOfHistoryApiFallback
