@@ -85,6 +85,8 @@ step 2. `npm install` 或 `yarn install`
 
 `npm run build` 或 `yarn build`，打包结果存放于./build目录下
 
+----
+
 ### 多页面开发模式(默认是多页面开发模式)
 
 #### step 1. 开发调试
