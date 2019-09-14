@@ -73,15 +73,21 @@ step 2. `npm install` 或 `yarn install`
 
 ### 单页面开发模式
 
-step 1. 开发调试：`npm start` 或 `yarn start`
+#### step 1. 开发调试
 
-step 2. 在浏览器中打开URL<http://localhost:3000>
+`npm start` 或 `yarn start`
 
-step 3. 打包：`npm run build` 或 `yarn build`，打包结果存放于./build目录下
+#### step 2. 浏览
+
+在浏览器中打开URL<http://localhost:3000>
+
+#### step 3. 打包
+
+`npm run build` 或 `yarn build`，打包结果存放于./build目录下
 
 ### 多页面开发模式(默认是多页面开发模式)
 
-step 1. 开发调试
+#### step 1. 开发调试
     
 正常在调试所有页面的情况下使用无参数命令：`npm start` 或 `yarn start`。
 
@@ -91,9 +97,11 @@ step 1. 开发调试
 
 - 还可以组合几个页面一起开发调试：`npm start -page index,pagea,pageb` 或 `yarn start -page index,pagea,pageb`。
 
-step 2. 在浏览器里打开URL：<http://localhost:3000>
+#### step 2. 浏览
 
-step 3. 打包
+在浏览器里打开URL：<http://localhost:3000>
+
+#### step 3. 打包
 
 打包所有页面：`npm run build` 或 `yarn build`。打包的结果将存放在./build/all目录下。
 
