@@ -40,8 +40,8 @@ const isInteractive = process.stdout.isTTY;
 // Warn and crash if required files are missing
 if(isMultipageMode){
   Object.keys(pages).forEach(name => {
-    let { path } = pages[name];
-    if (!checkRequiredFiles([paths.appHtml, path])) {
+    let { template, path } = pages[name];
+    if (!checkRequiredFiles([template || paths.appHtml, path])) {
       process.exit(1);
     }
   });
