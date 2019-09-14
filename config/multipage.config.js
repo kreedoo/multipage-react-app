@@ -58,7 +58,7 @@ const pages = getValidPages(allPages, params);
 const groupName = IS_INDEPENDENT_PACKING ? (() => {
   const name = Object.keys(pages)[0];
   const page = pages[name];
-  return page.groupName || '';
+  return page.groupName || 'all';
 })() : '';
 
 function getEntries(isEnvDevelopment, appIndexJsForSPAMode){
