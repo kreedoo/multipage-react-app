@@ -117,6 +117,18 @@ step 2. `npm install` 或 `yarn install`
 
 注意：指定页面参数用`命令 -page 参数值`，例如：`npm start -page pagea`，其中参数值可以是多个值，多个值之间通过任一符号[:|,]分隔。
 
+## 如何设置开发模式？
+
+在package.json文件中，有两个字段：
+
+`"isMultipageMode": true,` 这个字段是用于控制开发模式的，默认为true。
+
+当值为true时，表示开启`多页面开发模式`。
+
+当值为false时，表示开启`单页面开发模式`。
+
+`"isIndependentPacking": true,`，这个字段是在开启`多页面开发模式`下才有用，表示是否支持页面独立打包，true表示支持，false表示不支持，默认值为true。
+
 ## 编码规范与约定
 
 1. 采用[airbnb](https://github.com/airbnb/javascript)开源JS编码规范
