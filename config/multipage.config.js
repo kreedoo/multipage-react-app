@@ -3,10 +3,12 @@ const fs = require('fs');
 const globby = require('globby');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const getParams = require('./params');
+const paths = require('./paths');
+const appPackage = require(paths.appPackageJson);
 const params = getParams();
 
-const IS_INDEPENDENT_PACKING = true;
-const IS_MULTIPAGE_MODE = true;
+const IS_INDEPENDENT_PACKING = appPackage.isIndependentPacking;
+const IS_MULTIPAGE_MODE = appPackage.isMultipageMode;
 
 const appDirectory = fs.realpathSync(process.cwd());
 const resolveApp = relativePath => path.resolve(appDirectory, relativePath);

@@ -2,6 +2,8 @@
   "name": "multipages-react-app",
   "version": "0.1.0",
   "private": true,
+  "isMultipageMode": true,
+  "isIndependentPacking": true,
   "dependencies": {
     "@babel/core": "7.5.5",
     "@babel/plugin-proposal-class-properties": "^7.5.5",
