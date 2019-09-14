@@ -32,13 +32,19 @@ function getAllPages(){
 
   return pages;
 }
+function generateGroupName(pageNames){
+  let names = [...pageNames];
+  names.sort();
+
+  return names.join('_');
+}
 function getValidPages(pages, params){
   if(typeof params.page !== 'undefined'){
     let validPages = {};
     const pageNames = params.page.split(/[:,\|]/);
     const validPageNames = Object.keys(pages).filter(name => pageNames.indexOf(name) > -1);
     if(validPageNames.length > 0){
-      const groupName = validPageNames.join('_');
+      const groupName = generateGroupName(validPageNames);
       validPageNames.forEach(name => {
         validPages[name] = {
           ...pages[name],
