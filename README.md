@@ -82,23 +82,28 @@ step 3. 打包：`npm run build` 或 `yarn build`，打包结果存放于./build
 ### 多页面开发模式(默认是多页面开发模式)
 
 step 1. 开发调试
-    正常在调试所有页面的情况下使用无参数命令：`npm start` 或 `yarn start`。
-
-    当然我们也可以通过-page参数指定页面进行开发调试：
     
-    若单独针对某一个页面进行调试开发时使用：`npm start -page pageName` 或 `yarn start -page pageName`
-    还可以组合几个页面一起开发调试：`npm start -page index,pagea,pageb` 或 `yarn start -page index,pagea,pageb`。
+正常在调试所有页面的情况下使用无参数命令：`npm start` 或 `yarn start`。
+
+当然我们也可以通过-page参数指定页面进行开发调试：
+
+- 若单独针对某一个页面进行调试开发时使用：`npm start -page pageName` 或 `yarn start -page pageName`
+
+- 还可以组合几个页面一起开发调试：`npm start -page index,pagea,pageb` 或 `yarn start -page index,pagea,pageb`。
 
 step 2. 在浏览器里打开URL：<http://localhost:3000>
 
 step 3. 打包
-    打包所有页面：`npm run build` 或 `yarn build`。打包的结果将存放在./build/all目录下。
 
-    与开发调试的命令一样，可以通过-page参数指定页面进行打包：
-    
-    单独页面打包：`npm run build -page pagea` 或 `yarn build -page pagea`。打包结果存放在./build/pagea目录下。
-    
-    组合页面打包：`npm run build -page pagea,pageb` 或 `yarn build -page pagea,pageb`。打包结果存放在./build/pagea_pageb目录下。
+打包所有页面：`npm run build` 或 `yarn build`。打包的结果将存放在./build/all目录下。
+
+与开发调试的命令一样，可以通过-page参数指定页面进行打包：
+
+- 单独页面打包：`npm run build -page pagea` 或 `yarn build -page pagea`。
+  打包结果存放在./build/pagea目录下。
+
+- 组合页面打包：`npm run build -page pagea,pageb` 或 `yarn build -page pagea,pageb`。
+  打包结果存放在./build/pagea_pageb目录下。
 
 注意：指定页面参数用`命令 -page 参数值`，例如：`npm start -page pagea`，其中参数值可以是多个值，多个值之间通过任一符号[:|,]分隔。
 
