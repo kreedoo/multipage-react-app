@@ -1,32 +1,34 @@
 module.exports = {
-    "arrowParens": "avoid",
-    "bracketSpacing": true,
-    "endOfLine": "auto",
-    "htmlWhitespaceSensitivity": "css",
-    "jsxBracketSameLine": false,
-    "jsxSingleQuote": false,
-    "parser": "babylon",
-    "printWidth": 120,
-    "proseWrap": "never",
-    "quoteProps": "as-needed",
-    "semi": true,
-    "singleQuote": true,
-    "tabWidth": 4,
-    "trailingComma": "none",
-    "useTabs": false,
-    "overrides": [
+    singleQuote: true,
+    trailingComma: 'all',
+    printWidth: 100,
+    proseWrap: 'never',
+    overrides: [
         {
-            "files": ".prettierrc",
-            "options": {
-                "parser": "json"
+            files: '.prettierrc',
+            options: {
+                parser: 'json'
             }
         },
         {
-            "files": "document.ejs",
-            "options": {
-                "parser": "html"
+            files: 'document.ejs',
+            options: {
+                parser: 'html'
             }
         }
-    ]
-};
+    ],
 
+    arrowParens: 'avoid',
+    bracketSpacing: true,
+    endOfLine: 'auto',
+    htmlWhitespaceSensitivity: 'css',
+    jsxBracketSameLine: false,
+    jsxSingleQuote: false,
+    // parser: "babel",
+    printWidth: 120,
+    quoteProps: 'as-needed',
+    semi: true,
+    tabWidth: 4,
+    trailingComma: 'none',
+    useTabs: false
+};

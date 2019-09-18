@@ -32,6 +32,18 @@
     "eslint-plugin-jsx-a11y": "6.2.3",
     "eslint-plugin-react": "7.14.3",
     "eslint-plugin-react-hooks": "^1.6.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-config-airbnb-typescript": "^4.0.0",
+    "eslint-config-egg": "^7.1.0",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-formatter-pretty": "^2.1.1",
+    "eslint-plugin-babel": "^5.3.0",
+    "eslint-plugin-compat": "^3.1.1",
+    "eslint-plugin-eslint-comments": "^3.1.1",
+    "eslint-plugin-jest": "^22.4.1",
+    "eslint-plugin-markdown": "^1.0.0",
+    "eslint-plugin-promise": "^4.1.1",
+    "eslint-plugin-unicorn": "^8.0.1",
     "file-loader": "3.0.1",
     "fs-extra": "7.0.1",
     "html-webpack-plugin": "4.0.0-beta.5",
@@ -81,7 +93,8 @@
     "webpack": "4.39.1",
     "webpack-dev-server": "3.2.1",
     "webpack-manifest-plugin": "2.0.4",
-    "workbox-webpack-plugin": "4.3.1"
+    "workbox-webpack-plugin": "4.3.1",
+    "typescript": "^3.5.2"
   },
   "scripts": {
     "lint": "npm run lint:js && npm run lint:style && npm run lint:prettier",
