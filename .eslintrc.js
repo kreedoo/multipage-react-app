@@ -91,7 +91,8 @@ module.exports = {
         'react/jsx-indent': [2, 4],
         'react/jsx-indent-props': [2, 4],
         'comma-dangle': [2, 'never'],
-        'no-console': 0
+        'no-console': 0,
+        'max-len': 0
     },
     settings: {
         // support import modules from TypeScript files in JavaScript files
